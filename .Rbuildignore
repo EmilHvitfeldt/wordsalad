@@ -1,3 +1,7 @@
 ^wordsalad\.Rproj$
 ^\.Rproj\.user$
 ^data-raw$
+^LICENSE\.md$
+^design-goals.md$
+^README\.Rmd$
+^CODE_OF_CONDUCT\.md$

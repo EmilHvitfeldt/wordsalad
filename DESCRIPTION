@@ -1,5 +1,5 @@
 Package: wordsalad
-Title: What the Package Does (One Line, Title Case)
+Title: Provide Rools to Extract and Analyse Word Vectors
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Emil",
@@ -7,7 +7,9 @@ Authors@R:
            role = c("aut", "cre"),
            email = "emilhhvitfeldt@gmail.com",
            comment = c(ORCID = "0000-0002-0679-1945"))
-Description: What the package does (one paragraph).
+Description: Provides access to various word embedding methods to extract word
+    vectors using a unified framework to increase repoducibility and 
+    correctness.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -15,3 +17,8 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0.9000
 Depends: 
     R (>= 2.10)
+Imports: 
+    tibble,
+    text2vec
+Suggests: 
+    testthat

@@ -1,7 +1,7 @@
 ## code to prepare `fairy_tales` dataset goes here
 
 library(hcandersenr)
-library(tokenizers)
+library(tidyverse)
 
 fairy_tales <- hcandersen_en %>%
   nest(data = c(text)) %>%

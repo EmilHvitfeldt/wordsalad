@@ -1,0 +1,48 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# wordsalad
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of wordsalad is to provide a unified interface for word embedding methods to produce word vectors.
+
+Goals of this package are:
+
+- Allow the specification of tokenizer used
+- Streamline argument names and order
+- Consistant output formats
+
+## Installation
+
+If you want the development version instead then install directly from GitHub:
+
+```{r, eval=FALSE}
+# install.packages("devtools")
+devtools::install_github("EmilHvitfeldt/wordsalad")
+```
+
+## Example
+
+```{r, message=FALSE}
+library(wordsalad)
+
+glove(fairy_tales)
+```
+
+## Code of Conduct
+  
+Please note that the wordsalad project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
