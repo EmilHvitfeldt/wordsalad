@@ -38,7 +38,14 @@ word2vec <- function(text, tokenizer = text2vec::space_tokenizer,
                      sample = 0.001, min_count = 5L, stopwords = character(),
                      threads = 1L, collapse_character = "\t") {
 
+  if (dim < 0)
+    stop("`dim` Must be a positive integer.")
+
   text <- pre_tokenize(text, tokenizer, collapse_character)
+  stopwords <- paste(collapse_character,
+                     stopwords,
+                     collapse_character,
+                     sep = "")
 
   model <- word2vec::word2vec(x = text,
                               type = type,
