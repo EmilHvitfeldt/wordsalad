@@ -13,6 +13,7 @@ glove(
   dim = 10L,
   x_max = 10L,
   min_count = 5L,
+  stopwords = character(),
   window = 5L,
   n_iter = 10L,
   convergence_tol = -1,
@@ -32,6 +33,8 @@ weighting function. Defaults to 10.}
 
 \item{min_count}{Integer, number of times a token should appear to be
 considered in the model. Defaults to 5.}
+
+\item{stopwords}{Character, a vector of stopwords to exclude from training.}
 
 \item{window}{Integer, skip length between words. Defaults to 5.}
 

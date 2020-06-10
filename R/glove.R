@@ -8,6 +8,7 @@
 #'    weighting function. Defaults to 10.
 #' @param min_count Integer, number of times a token should appear to be
 #'    considered in the model. Defaults to 5.
+#' @param stopwords Character, a vector of stopwords to exclude from training.
 #' @param window Integer, skip length between words. Defaults to 5.
 #' @param n_iter Integer, number of training iterations. Defaults to 10.
 #' @param convergence_tol Numeric, value determining the convergence criteria.
@@ -29,11 +30,12 @@
 #' @examples
 #' glove(fairy_tales, x_max = 5)
 glove <- function(text, tokenizer = text2vec::space_tokenizer, dim = 10L,
-                  x_max = 10L, min_count = 5L, window = 5L,
-                  n_iter = 10L, convergence_tol = -1, verbose = FALSE) {
+                  x_max = 10L, min_count = 5L, stopwords = character(),
+                  window = 5L, n_iter = 10L, convergence_tol = -1,
+                  verbose = FALSE) {
   tokens <- tokenizer(text)
   it <- text2vec::itoken(tokens, progressbar = FALSE)
-  vocab <- text2vec::create_vocabulary(it)
+  vocab <- text2vec::create_vocabulary(it, stopwords = stopwords)
   vocab <- text2vec::prune_vocabulary(vocab, term_count_min = min_count)
   vectorizer <- text2vec::vocab_vectorizer(vocab)
   tcm <- text2vec::create_tcm(it, vectorizer, skip_grams_window = window)

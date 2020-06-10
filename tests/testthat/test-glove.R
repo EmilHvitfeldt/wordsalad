@@ -34,3 +34,17 @@ test_that("glove dim argument works", {
   )
 
 })
+
+test_that("glove stopwords argument works", {
+
+  no_stopwords <- glove(text)$tokens
+
+  stopwords <- no_stopwords[1:5]
+
+  with_stopwords <- glove(text, stopwords = stopwords)$tokens
+
+  expect_equal(
+    setdiff(no_stopwords, with_stopwords),
+    stopwords
+  )
+})
