@@ -19,6 +19,7 @@ Depends:
     R (>= 2.10)
 Imports: 
     tibble,
-    text2vec
+    text2vec,
+    word2vec
 Suggests: 
     testthat
