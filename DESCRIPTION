@@ -24,3 +24,5 @@ Imports:
     fastrtext
 Suggests: 
     testthat
+URL: https://github.com/EmilHvitfeldt/wordsalad
+BugReports: https://github.com/EmilHvitfeldt/wordsalad/issues
