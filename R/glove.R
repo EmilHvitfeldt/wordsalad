@@ -18,6 +18,7 @@
 #'     convergence_tol}. Defaults to -1.
 #' @param verbose Logical, controls whether progress is reported as operations
 #'     are executed.
+#' @param threads number of CPU threads to use. Defaults to 1.
 #'
 #' @return A [tibble][tibble::tibble-package] containing the token in the first
 #'     column and word vectors in the remaining columns.
@@ -32,7 +33,7 @@
 glove <- function(text, tokenizer = text2vec::space_tokenizer, dim = 10L,
                   x_max = 10L, min_count = 5L, stopwords = character(),
                   window = 5L, n_iter = 10L, convergence_tol = -1,
-                  verbose = FALSE) {
+                  verbose = FALSE, threads = 1) {
   tokens <- tokenizer(text)
   it <- text2vec::itoken(tokens, progressbar = FALSE)
   vocab <- text2vec::create_vocabulary(it, stopwords = stopwords)
@@ -42,12 +43,16 @@ glove <- function(text, tokenizer = text2vec::space_tokenizer, dim = 10L,
   glove <- text2vec::GlobalVectors$new(rank = dim, x_max = x_max)
 
   if (verbose) {
-    wv_main <- glove$fit_transform(tcm, n_iter = n_iter,
-                                   convergence_tol = convergence_tol)
+    wv_main <- glove$fit_transform(tcm,
+                                   n_iter = n_iter,
+                                   convergence_tol = convergence_tol,
+                                   n_threads = threads)
   } else {
     temp <- utils::capture.output(
-      wv_main <- glove$fit_transform(tcm, n_iter = n_iter,
-                                     convergence_tol = convergence_tol)
+      wv_main <- glove$fit_transform(tcm,
+                                     n_iter = n_iter,
+                                     convergence_tol = convergence_tol,
+                                     n_threads = threads)
     )
   }
 

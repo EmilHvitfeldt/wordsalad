@@ -17,7 +17,8 @@ glove(
   window = 5L,
   n_iter = 10L,
   convergence_tol = -1,
-  verbose = FALSE
+  verbose = FALSE,
+  threads = 1
 )
 }
 \arguments{
@@ -48,6 +49,8 @@ all iterations (b) \code{cost_previous_iter / cost_current_iter - 1 <
 
 \item{verbose}{Logical, controls whether progress is reported as operations
 are executed.}
+
+\item{threads}{number of CPU threads to use. Defaults to 1.}
 }
 \value{
 A \link[tibble:tibble-package]{tibble} containing the token in the first
