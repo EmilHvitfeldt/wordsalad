@@ -11,15 +11,15 @@ glove(
   text,
   tokenizer = text2vec::space_tokenizer,
   dim = 10L,
-  x_max = 10L,
-  min_count = 5L,
-  stopwords = character(),
   window = 5L,
+  min_count = 5L,
   n_iter = 10L,
+  x_max = 10L,
+  stopwords = character(),
   convergence_tol = -1,
-  verbose = FALSE,
   threads = 1,
-  composition = c("tibble", "data.frame", "matrix")
+  composition = c("tibble", "data.frame", "matrix"),
+  verbose = FALSE
 )
 }
 \arguments{
@@ -30,17 +30,17 @@ glove(
 
 \item{dim}{Integer, number of dimension of the resulting word vectors.}
 
-\item{x_max}{Integer, maximum number of co-occurrences to use in the
-weighting function. Defaults to 10.}
+\item{window}{Integer, skip length between words. Defaults to 5.}
 
 \item{min_count}{Integer, number of times a token should appear to be
 considered in the model. Defaults to 5.}
 
-\item{stopwords}{Character, a vector of stopwords to exclude from training.}
-
-\item{window}{Integer, skip length between words. Defaults to 5.}
-
 \item{n_iter}{Integer, number of training iterations. Defaults to 10.}
+
+\item{x_max}{Integer, maximum number of co-occurrences to use in the
+weighting function. Defaults to 10.}
+
+\item{stopwords}{Character, a vector of stopwords to exclude from training.}
 
 \item{convergence_tol}{Numeric, value determining the convergence criteria.
 \code{numeric = -1} defines early stopping strategy. Stop fitting
@@ -48,13 +48,13 @@ when one of two following conditions will be satisfied: (a) passed
 all iterations (b) \code{cost_previous_iter / cost_current_iter - 1 <
     convergence_tol}. Defaults to -1.}
 
-\item{verbose}{Logical, controls whether progress is reported as operations
-are executed.}
-
 \item{threads}{number of CPU threads to use. Defaults to 1.}
 
 \item{composition}{Character, Either "tibble", "matrix", or "data.frame" for
 the format out the resulting word vectors.}
+
+\item{verbose}{Logical, controls whether progress is reported as operations
+are executed.}
 }
 \value{
 A \link[tibble:tibble-package]{tibble}, data.frame or matrix containing

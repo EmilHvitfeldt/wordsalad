@@ -43,12 +43,18 @@
 #'
 #' # Custom tokenizer that splits on non-alphanumeric characters
 #' fasttext(fairy_tales, tokenizer = function(x) strsplit(x, "[^[:alnum:]]+"))
-fasttext <- function(text, tokenizer = text2vec::space_tokenizer, dim = 10L,
-                  min_count = 5L, negative = 5L, loss = "hs",
-                  type = c("skip-gram", "cbow"),
-                  window = 5L, n_iter = 5L, threads = 1L,
-                  verbose = FALSE,
-                  composition = c("tibble", "data.frame", "matrix")) {
+fasttext <- function(text,
+                     tokenizer = text2vec::space_tokenizer,
+                     dim = 10L,
+                     type = c("skip-gram", "cbow"),
+                     window = 5L,
+                     loss = "hs",
+                     negative = 5L,
+                     n_iter = 5L,
+                     min_count = 5L,
+                     threads = 1L,
+                     composition = c("tibble", "data.frame", "matrix"),
+                     verbose = FALSE) {
 
   composition <- match.arg(composition)
   type <- match.arg(type)

@@ -10,15 +10,15 @@
 word2vec(
   text,
   tokenizer = text2vec::space_tokenizer,
-  type = c("cbow", "skip-gram"),
   dim = 50,
+  type = c("cbow", "skip-gram"),
   window = 5L,
-  iter = 5L,
-  lr = 0.05,
-  hs = FALSE,
-  negative = 5L,
-  sample = 0.001,
   min_count = 5L,
+  loss = c("ns", "hs"),
+  negative = 5L,
+  n_iter = 5L,
+  lr = 0.05,
+  sample = 0.001,
   stopwords = character(),
   threads = 1L,
   collapse_character = "\\t",
@@ -31,23 +31,24 @@ word2vec(
 \item{tokenizer}{Function, function to perform tokenization. Defaults to
 \link[text2vec:space_tokenizer]{text2vec::space_tokenizer}.}
 
-\item{type}{the type of algorithm to use, either 'cbow' or 'skip-gram'. Defaults to 'cbow'}
-
 \item{dim}{dimension of the word vectors. Defaults to 50.}
+
+\item{type}{the type of algorithm to use, either 'cbow' or 'skip-gram'. Defaults to 'cbow'}
 
 \item{window}{skip length between words. Defaults to 5.}
 
-\item{iter}{number of training iterations. Defaults to 5.}
+\item{min_count}{integer indicating the number of time a word should occur to be considered as part of the training vocabulary. Defaults to 5.}
 
-\item{lr}{initial learning rate also known as alpha. Defaults to 0.05}
-
-\item{hs}{logical indicating to use hierarchical softmax instead of negative sampling. Defaults to FALSE indicating to do negative sampling.}
+\item{loss}{Charcter, choice of loss function must be one of "ns" or "hs".
+See detaulsfor more Defaults to "ns".}
 
 \item{negative}{integer with the number of negative samples. Only used in case hs is set to FALSE}
 
-\item{sample}{threshold for occurrence of words. Defaults to 0.001}
+\item{n_iter}{Integer, number of training iterations. Defaults to 5.}
 
-\item{min_count}{integer indicating the number of time a word should occur to be considered as part of the training vocabulary. Defaults to 5.}
+\item{lr}{initial learning rate also known as alpha. Defaults to 0.05}
+
+\item{sample}{threshold for occurrence of words. Defaults to 0.001}
 
 \item{stopwords}{a character vector of stopwords to exclude from training}
 
@@ -75,6 +76,12 @@ need to pick \code{collapse_character} to be a character that will not appear
 in any of the tokens after tokenizing is done. The default value is a "tab"
 character. If you pick a character that is present in the tokens then those
 words will be split.
+
+The choice of loss functions are one of:
+\itemize{
+\item "ns" negative sampling
+\item "hs" hierarchical softmax
+}
 }
 \examples{
 word2vec(fairy_tales)

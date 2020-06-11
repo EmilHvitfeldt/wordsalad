@@ -8,6 +8,9 @@
 #'    Defaults to \code{"\\t"}.
 #' @param composition Character, Either "tibble", "matrix", or "data.frame" for
 #'    the format out the resulting word vectors.
+#' @param n_iter Integer, number of training iterations. Defaults to 5.
+#' @param loss Charcter, choice of loss function must be one of "ns" or "hs".
+#'    See detaulsfor more Defaults to "ns".
 #' @inheritParams word2vec::word2vec
 #'
 #'
@@ -19,6 +22,10 @@
 #' in any of the tokens after tokenizing is done. The default value is a "tab"
 #' character. If you pick a character that is present in the tokens then those
 #' words will be split.
+#'
+#' The choice of loss functions are one of:
+#'    * "ns" negative sampling
+#'    * "hs" hierarchical softmax
 #'
 #' @return A [tibble][tibble::tibble-package], data.frame or matrix containing
 #'     the token in the first column and word vectors in the remaining columns.
@@ -34,16 +41,28 @@
 #'
 #' # Custom tokenizer that splits on non-alphanumeric characters
 #' word2vec(fairy_tales, tokenizer = function(x) strsplit(x, "[^[:alnum:]]+"))
-word2vec <- function(text, tokenizer = text2vec::space_tokenizer,
-                     type = c("cbow", "skip-gram"), dim = 50, window = 5L,
-                     iter = 5L, lr = 0.05, hs = FALSE, negative = 5L,
-                     sample = 0.001, min_count = 5L, stopwords = character(),
-                     threads = 1L, collapse_character = "\t",
+word2vec <- function(text,
+                     tokenizer = text2vec::space_tokenizer,
+                     dim = 50,
+                     type = c("cbow", "skip-gram"),
+                     window = 5L,
+                     min_count = 5L,
+                     loss = c("ns", "hs"),
+                     negative = 5L,
+                     n_iter = 5L,
+                     lr = 0.05,
+                     sample = 0.001,
+                     stopwords = character(),
+                     threads = 1L,
+                     collapse_character = "\t",
                      composition = c("tibble", "data.frame", "matrix")) {
 
   if (dim < 0)
     stop("`dim` Must be a positive integer.")
   composition <- match.arg(composition)
+
+  loss <- match.arg(loss)
+  loss <- ifelse(loss == "hs", TRUE, FALSE)
 
   text <- pre_tokenize(text, tokenizer, collapse_character)
   stopwords <- paste(collapse_character,
@@ -55,9 +74,9 @@ word2vec <- function(text, tokenizer = text2vec::space_tokenizer,
                               type = type,
                               dim = dim,
                               window = window,
-                              iter = iter,
+                              iter = n_iter,
                               lr = lr,
-                              hs = hs,
+                              hs = loss,
                               negative = negative,
                               sample = sample,
                               min_count = min_count,

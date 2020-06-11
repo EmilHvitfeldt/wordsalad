@@ -11,15 +11,15 @@ fasttext(
   text,
   tokenizer = text2vec::space_tokenizer,
   dim = 10L,
-  min_count = 5L,
-  negative = 5L,
-  loss = "hs",
   type = c("skip-gram", "cbow"),
   window = 5L,
+  loss = "hs",
+  negative = 5L,
   n_iter = 5L,
+  min_count = 5L,
   threads = 1L,
-  verbose = FALSE,
-  composition = c("tibble", "data.frame", "matrix")
+  composition = c("tibble", "data.frame", "matrix"),
+  verbose = FALSE
 )
 }
 \arguments{
@@ -30,19 +30,16 @@ fasttext(
 
 \item{dim}{Integer, number of dimension of the resulting word vectors.}
 
-\item{min_count}{Integer, number of times a token should appear to be
-considered in the model. Defaults to 5.}
-
-\item{negative}{integer with the number of negative samples. Only used when
-loss = "ns".}
-
-\item{loss}{Charcter, choice of loss function must be one of "ns", "hs", or
-"softmax". See detaulsfor more Defaults to "hs".}
-
 \item{type}{Character, the type of algorithm to use, either 'cbow' or
 'skip-gram'. Defaults to 'skip-gram'.}
 
 \item{window}{Integer, skip length between words. Defaults to 5.}
+
+\item{loss}{Charcter, choice of loss function must be one of "ns", "hs", or
+"softmax". See detaulsfor more Defaults to "hs".}
+
+\item{negative}{integer with the number of negative samples. Only used when
+loss = "ns".}
 
 \item{n_iter}{Integer, number of training iterations. Defaults to 10.
 \code{numeric = -1} defines early stopping strategy. Stop fitting
@@ -50,13 +47,16 @@ when one of two following conditions will be satisfied: (a) passed
 all iterations (b) \code{cost_previous_iter / cost_current_iter - 1 <
     convergence_tol}. Defaults to -1.}
 
-\item{threads}{number of CPU threads to use. Defaults to 1.}
+\item{min_count}{Integer, number of times a token should appear to be
+considered in the model. Defaults to 5.}
 
-\item{verbose}{Logical, controls whether progress is reported as operations
-are executed.}
+\item{threads}{number of CPU threads to use. Defaults to 1.}
 
 \item{composition}{Character, Either "tibble", "matrix", or "data.frame" for
 the format out the resulting word vectors.}
+
+\item{verbose}{Logical, controls whether progress is reported as operations
+are executed.}
 }
 \value{
 A \link[tibble:tibble-package]{tibble}, data.frame or matrix containing

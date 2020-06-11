@@ -32,11 +32,18 @@
 #'
 #' @examples
 #' glove(fairy_tales, x_max = 5)
-glove <- function(text, tokenizer = text2vec::space_tokenizer, dim = 10L,
-                  x_max = 10L, min_count = 5L, stopwords = character(),
-                  window = 5L, n_iter = 10L, convergence_tol = -1,
-                  verbose = FALSE, threads = 1,
-                  composition = c("tibble", "data.frame", "matrix")) {
+glove <- function(text,
+                  tokenizer = text2vec::space_tokenizer,
+                  dim = 10L,
+                  window = 5L,
+                  min_count = 5L,
+                  n_iter = 10L,
+                  x_max = 10L,
+                  stopwords = character(),
+                  convergence_tol = -1,
+                  threads = 1,
+                  composition = c("tibble", "data.frame", "matrix"),
+                  verbose = FALSE) {
 
   composition <- match.arg(composition)
   tokens <- tokenizer(text)
