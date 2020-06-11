@@ -5,6 +5,10 @@
 
 <!-- badges: start -->
 
+[![R build
+status](https://github.com/EmilHvitfeldt/wordsalad/workflows/R-CMD-check/badge.svg)](https://github.com/EmilHvitfeldt/wordsalad/actions)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
 The goal of wordsalad is to provide a unified interface for word
@@ -32,20 +36,20 @@ devtools::install_github("EmilHvitfeldt/wordsalad")
 library(wordsalad)
 
 glove(fairy_tales)
-#> # A tibble: 6,808 x 11
-#>    tokens      V1     V2       V3    V4     V5      V6      V7     V8      V9
-#>    <chr>    <dbl>  <dbl>    <dbl> <dbl>  <dbl>   <dbl>   <dbl>  <dbl>   <dbl>
-#>  1 "\"Af… -0.0693 -0.353 -0.293   0.708  0.519  0.831  -0.198  0.595   0.298 
-#>  2 "\"Aw…  0.413  -0.418 -0.336   1.32   0.480  0.795  -0.628  0.0266  0.639 
-#>  3 "\"Aw…  0.802  -0.891 -1.32    0.737  0.868  0.488  -0.347  0.0240  0.0307
-#>  4 "\"Bu…  0.368  -0.941 -0.0747  0.568  0.962  0.496  -1.37   1.31   -0.475 
-#>  5 "\"By"  0.623   0.104  0.219   0.631  0.516 -0.105  -0.492  1.01    0.357 
-#>  6 "\"Di…  0.764  -0.487 -0.00105 0.761  0.173  0.490  -0.588  0.723  -0.366 
-#>  7 "\"Ea…  0.237  -0.893  0.265   1.16  -0.878  1.17   -0.651  0.428  -0.571 
-#>  8 "\"Ev… -0.0431 -0.774 -0.898   1.31   0.517  0.215   0.0256 0.269   0.461 
-#>  9 "\"Ge…  0.508  -0.585 -0.698   1.16   0.205 -0.304  -0.459  0.692   0.206 
-#> 10 "\"Hu… -0.0798 -0.498 -0.493   1.22   0.762 -0.0990 -0.262  0.312   0.552 
-#> # … with 6,798 more rows, and 1 more variable: V10 <dbl>
+#> # A tibble: 451 x 11
+#>    tokens       V1      V2     V3     V4      V5    V6     V7     V8     V9
+#>    <chr>     <dbl>   <dbl>  <dbl>  <dbl>   <dbl> <dbl>  <dbl>  <dbl>  <dbl>
+#>  1 "\"Do" -0.0137   0.974   1.21   0.805  0.254  0.822  0.907  0.243 -0.193
+#>  2 "\"Go…  0.00368  0.482  -0.600 -1.21   0.517  0.347  0.312  0.361 -0.712
+#>  3 "\"He"  0.0800  -0.339  -0.384 -0.870 -0.472  0.355  0.185 -0.224 -1.13 
+#>  4 "\"He… -0.359   -0.400  -0.450 -0.503  0.266  0.464  0.179  0.145 -0.575
+#>  5 "\"Oh"  0.778    0.0130  0.407 -0.516  0.0855 0.361 -0.293 -0.549 -0.617
+#>  6 "\"Th… -0.0854   0.451  -0.461 -0.538  0.229  0.592  0.543 -0.145 -0.868
+#>  7 "\"Ye… -0.570    0.883  -0.115 -0.288 -0.705  0.431  0.468 -0.277 -0.696
+#>  8 "-"    -0.607    0.440   0.100 -0.630 -0.0968 0.787  1.07  -0.500 -0.927
+#>  9 "All"   0.373   -0.297   0.183 -0.447  0.183  1.07   0.843  0.257  0.512
+#> 10 "You"  -0.723    0.241  -0.127 -0.616  0.391  0.430  0.268 -0.602 -0.753
+#> # … with 441 more rows, and 1 more variable: V10 <dbl>
 ```
 
 ## Code of Conduct

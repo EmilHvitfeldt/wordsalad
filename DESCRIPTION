@@ -1,5 +1,5 @@
 Package: wordsalad
-Title: Provide Rools to Extract and Analyse Word Vectors
+Title: Provide Tools to Extract and Analyze Word Vectors
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Emil",
