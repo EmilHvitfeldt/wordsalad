@@ -48,17 +48,3 @@ test_that("glove stopwords argument works", {
     stopwords
   )
 })
-
-test_that("glove stopwords argument works", {
-
-  no_stopwords <- glove(text)$tokens
-
-  new_stopwords <- no_stopwords[1:5]
-
-  with_stopwords <- glove(text, stopwords = new_stopwords)$tokens
-
-  expect_equal(
-    setdiff(no_stopwords, with_stopwords),
-    new_stopwords
-  )
-})
