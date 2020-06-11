@@ -5,7 +5,9 @@
 #'    [text2vec::space_tokenizer].
 #' @param dim Integer, number of dimension of the resulting word vectors.
 #' @param min_count Integer, number of times a token should appear to be
-#'    considered in the model. Defaults to 5.
+#'     considered in the model. Defaults to 5.
+#' @param type Character, the type of algorithm to use, either 'cbow' or
+#'     'skip-gram'. Defaults to 'skip-gram'.
 #' @param window Integer, skip length between words. Defaults to 5.
 #' @param n_iter Integer, number of training iterations. Defaults to 10.
 #'     \code{numeric = -1} defines early stopping strategy. Stop fitting
@@ -41,14 +43,17 @@
 #' fasttext(fairy_tales, tokenizer = function(x) strsplit(x, "[^[:alnum:]]+"))
 fasttext <- function(text, tokenizer = text2vec::space_tokenizer, dim = 10L,
                   min_count = 5L, negative = 5L, loss = "hs",
+                  type = c("skip-gram", "cbow"),
                   window = 5L, n_iter = 5L, threads = 1L,
                   verbose = FALSE) {
 
+  type <- match.arg(type)
+  type <- gsub("-", "", type)
   text <- pre_tokenize(text, tokenizer, " ")
   tmp_file_txt <- tempfile()
   tmp_file_model <- tempfile()
   writeLines(text = text, con = tmp_file_txt)
-  fastrtext::execute(commands = c("skipgram",
+  fastrtext::execute(commands = c(type,
                                   "-input", tmp_file_txt,
                                   "-output", tmp_file_model,
                                   "-verbose", ifelse(verbose, 2, 0),

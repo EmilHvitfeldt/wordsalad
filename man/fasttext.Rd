@@ -14,6 +14,7 @@ fasttext(
   min_count = 5L,
   negative = 5L,
   loss = "hs",
+  type = c("skip-gram", "cbow"),
   window = 5L,
   n_iter = 5L,
   threads = 1L,
@@ -36,6 +37,9 @@ loss = "ns".}
 
 \item{loss}{Charcter, choice of loss function must be one of "ns", "hs", or
 "softmax". See detaulsfor more Defaults to "hs".}
+
+\item{type}{Character, the type of algorithm to use, either 'cbow' or
+'skip-gram'. Defaults to 'skip-gram'.}
 
 \item{window}{Integer, skip length between words. Defaults to 5.}
 
