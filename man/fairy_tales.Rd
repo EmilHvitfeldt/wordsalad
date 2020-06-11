@@ -5,14 +5,18 @@
 \alias{fairy_tales}
 \title{The text of H.C. Andersen's fairy tales in English}
 \format{
-A character vector with 156 elements.
+A character vector with 5 elements.
 }
 \usage{
 fairy_tales
 }
 \description{
-A dataset containing 156 of H.C. andersens fairy tales
+A dataset containing 5 of H.C. andersens fairy tales
 translated to English. The UTF-8 plain text was sourced from
 http://www.andersenstories.com/.
+}
+\details{
+This is not representive of the size needed to generate good word vectors.
+It is just used for examples.
 }
 \keyword{datasets}
