@@ -6,6 +6,8 @@
 #' @param collapse_character Character vector with length 1. Character used to
 #'    glue together tokens after tokenizing. See details for more information.
 #'    Defaults to \code{"\\t"}.
+#' @param composition Character, Either "tibble", "matrix", or "data.frame" for
+#'    the format out the resulting word vectors.
 #' @inheritParams word2vec::word2vec
 #'
 #'
@@ -18,8 +20,8 @@
 #' character. If you pick a character that is present in the tokens then those
 #' words will be split.
 #'
-#' @return A [tibble][tibble::tibble-package] containing the token in the first
-#'     column and word vectors in the remaining columns.
+#' @return A [tibble][tibble::tibble-package], data.frame or matrix containing
+#'     the token in the first column and word vectors in the remaining columns.
 #'
 #' @source <https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf>
 #' @references Mikolov, Tomas and Sutskever, Ilya and Chen, Kai and Corrado,
@@ -36,10 +38,12 @@ word2vec <- function(text, tokenizer = text2vec::space_tokenizer,
                      type = c("cbow", "skip-gram"), dim = 50, window = 5L,
                      iter = 5L, lr = 0.05, hs = FALSE, negative = 5L,
                      sample = 0.001, min_count = 5L, stopwords = character(),
-                     threads = 1L, collapse_character = "\t") {
+                     threads = 1L, collapse_character = "\t",
+                     composition = c("tibble", "data.frame", "matrix")) {
 
   if (dim < 0)
     stop("`dim` Must be a positive integer.")
+  composition <- match.arg(composition)
 
   text <- pre_tokenize(text, tokenizer, collapse_character)
   stopwords <- paste(collapse_character,
@@ -63,9 +67,7 @@ word2vec <- function(text, tokenizer = text2vec::space_tokenizer,
 
   word_vectors <- as.matrix(model)
 
-  res <- as.data.frame(word_vectors)
-  res <- tibble::rownames_to_column(res, "tokens")
-  res <- tibble::as_tibble(res)
+  res <- composer(word_vectors, composition = composition)
 
   res
 }

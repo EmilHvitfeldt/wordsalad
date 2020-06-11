@@ -21,7 +21,8 @@ word2vec(
   min_count = 5L,
   stopwords = character(),
   threads = 1L,
-  collapse_character = "\\t"
+  collapse_character = "\\t",
+  composition = c("tibble", "data.frame", "matrix")
 )
 }
 \arguments{
@@ -55,10 +56,13 @@ word2vec(
 \item{collapse_character}{Character vector with length 1. Character used to
 glue together tokens after tokenizing. See details for more information.
 Defaults to \code{"\\t"}.}
+
+\item{composition}{Character, Either "tibble", "matrix", or "data.frame" for
+the format out the resulting word vectors.}
 }
 \value{
-A \link[tibble:tibble-package]{tibble} containing the token in the first
-column and word vectors in the remaining columns.
+A \link[tibble:tibble-package]{tibble}, data.frame or matrix containing
+the token in the first column and word vectors in the remaining columns.
 }
 \description{
 Extract word vectors from word2vec word embedding

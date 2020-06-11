@@ -19,9 +19,11 @@
 #' @param verbose Logical, controls whether progress is reported as operations
 #'     are executed.
 #' @param threads number of CPU threads to use. Defaults to 1.
+#' @param composition Character, Either "tibble", "matrix", or "data.frame" for
+#'    the format out the resulting word vectors.
 #'
-#' @return A [tibble][tibble::tibble-package] containing the token in the first
-#'     column and word vectors in the remaining columns.
+#' @return A [tibble][tibble::tibble-package], data.frame or matrix containing
+#'     the token in the first column and word vectors in the remaining columns.
 #' @export
 #'
 #' @source <https://nlp.stanford.edu/projects/glove/>
@@ -33,7 +35,10 @@
 glove <- function(text, tokenizer = text2vec::space_tokenizer, dim = 10L,
                   x_max = 10L, min_count = 5L, stopwords = character(),
                   window = 5L, n_iter = 10L, convergence_tol = -1,
-                  verbose = FALSE, threads = 1) {
+                  verbose = FALSE, threads = 1,
+                  composition = c("tibble", "data.frame", "matrix")) {
+
+  composition <- match.arg(composition)
   tokens <- tokenizer(text)
   it <- text2vec::itoken(tokens, progressbar = FALSE)
   vocab <- text2vec::create_vocabulary(it, stopwords = stopwords)
@@ -59,9 +64,7 @@ glove <- function(text, tokenizer = text2vec::space_tokenizer, dim = 10L,
   wv_context <- glove$components
   word_vectors <- wv_main + t(wv_context)
 
-  res <- as.data.frame(word_vectors)
-  res <- tibble::rownames_to_column(res, "tokens")
-  res <- tibble::as_tibble(res)
+  res <- composer(word_vectors, composition = composition)
 
   res
 }

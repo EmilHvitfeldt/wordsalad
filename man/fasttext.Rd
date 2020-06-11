@@ -18,7 +18,8 @@ fasttext(
   window = 5L,
   n_iter = 5L,
   threads = 1L,
-  verbose = FALSE
+  verbose = FALSE,
+  composition = c("tibble", "data.frame", "matrix")
 )
 }
 \arguments{
@@ -53,10 +54,13 @@ all iterations (b) \code{cost_previous_iter / cost_current_iter - 1 <
 
 \item{verbose}{Logical, controls whether progress is reported as operations
 are executed.}
+
+\item{composition}{Character, Either "tibble", "matrix", or "data.frame" for
+the format out the resulting word vectors.}
 }
 \value{
-A \link[tibble:tibble-package]{tibble} containing the token in the first
-column and word vectors in the remaining columns.
+A \link[tibble:tibble-package]{tibble}, data.frame or matrix containing
+the token in the first column and word vectors in the remaining columns.
 }
 \description{
 Extract word vectors from fasttext word embedding

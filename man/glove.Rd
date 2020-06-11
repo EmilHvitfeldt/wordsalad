@@ -18,7 +18,8 @@ glove(
   n_iter = 10L,
   convergence_tol = -1,
   verbose = FALSE,
-  threads = 1
+  threads = 1,
+  composition = c("tibble", "data.frame", "matrix")
 )
 }
 \arguments{
@@ -51,10 +52,13 @@ all iterations (b) \code{cost_previous_iter / cost_current_iter - 1 <
 are executed.}
 
 \item{threads}{number of CPU threads to use. Defaults to 1.}
+
+\item{composition}{Character, Either "tibble", "matrix", or "data.frame" for
+the format out the resulting word vectors.}
 }
 \value{
-A \link[tibble:tibble-package]{tibble} containing the token in the first
-column and word vectors in the remaining columns.
+A \link[tibble:tibble-package]{tibble}, data.frame or matrix containing
+the token in the first column and word vectors in the remaining columns.
 }
 \description{
 Extract word vectors from GloVe word embedding

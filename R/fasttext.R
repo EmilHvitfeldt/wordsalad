@@ -21,6 +21,8 @@
 #' @param verbose Logical, controls whether progress is reported as operations
 #'     are executed.
 #' @param threads number of CPU threads to use. Defaults to 1.
+#' @param composition Character, Either "tibble", "matrix", or "data.frame" for
+#'    the format out the resulting word vectors.
 #'
 #' @details
 #'    The choice of loss functions are one of:
@@ -28,8 +30,8 @@
 #'    * "hs" hierarchical softmax
 #'    * "softmax" full softmax
 #'
-#' @return A [tibble][tibble::tibble-package] containing the token in the first
-#'     column and word vectors in the remaining columns.
+#' @return A [tibble][tibble::tibble-package], data.frame or matrix containing
+#'     the token in the first column and word vectors in the remaining columns.
 #'
 #' @source <https://fasttext.cc/>
 #' @references Enriching Word Vectors with Subword Information, 2016, P.
@@ -45,8 +47,10 @@ fasttext <- function(text, tokenizer = text2vec::space_tokenizer, dim = 10L,
                   min_count = 5L, negative = 5L, loss = "hs",
                   type = c("skip-gram", "cbow"),
                   window = 5L, n_iter = 5L, threads = 1L,
-                  verbose = FALSE) {
+                  verbose = FALSE,
+                  composition = c("tibble", "data.frame", "matrix")) {
 
+  composition <- match.arg(composition)
   type <- match.arg(type)
   type <- gsub("-", "", type)
   text <- pre_tokenize(text, tokenizer, " ")
@@ -68,9 +72,7 @@ fasttext <- function(text, tokenizer = text2vec::space_tokenizer, dim = 10L,
   model <- fastrtext::load_model(paste0(tmp_file_model, ".bin"))
 
   word_vectors <- fastrtext::get_word_vectors(model)
-  res <- as.data.frame(word_vectors)
-  res <- tibble::rownames_to_column(res, "tokens")
-  res <- tibble::as_tibble(res)
+  res <- composer(word_vectors, composition = composition)
 
   res
 }
