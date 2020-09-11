@@ -66,12 +66,12 @@ A \link[tibble:tibble-package]{tibble}, data.frame or matrix containing
 the token in the first column and word vectors in the remaining columns.
 }
 \description{
-Extract word vectors from word2vec word embedding
+The calculations are done with the word2vec package.
 }
 \details{
 A trade-off have been made to allow for an arbitrary tokenizing function. The
 text is first passed through the tokenizer. Then it is being collapsed back
-together into strings using \code{collapse_character} as the seperater. You
+together into strings using \code{collapse_character} as the separator. You
 need to pick \code{collapse_character} to be a character that will not appear
 in any of the tokens after tokenizing is done. The default value is a "tab"
 character. If you pick a character that is present in the tokens then those

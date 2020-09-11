@@ -1,5 +1,7 @@
 #' Extract word vectors from GloVe word embedding
 #'
+#' The calculations are done with the text2vec package.
+#'
 #' @param text Character string.
 #' @param tokenizer Function, function to perform tokenization. Defaults to
 #'    [text2vec::space_tokenizer].
@@ -8,7 +10,7 @@
 #'    weighting function. Defaults to 10.
 #' @param min_count Integer, number of times a token should appear to be
 #'    considered in the model. Defaults to 5.
-#' @param stopwords Character, a vector of stopwords to exclude from training.
+#' @param stopwords Character, a vector of stop words to exclude from training.
 #' @param window Integer, skip length between words. Defaults to 5.
 #' @param n_iter Integer, number of training iterations. Defaults to 10.
 #' @param convergence_tol Numeric, value determining the convergence criteria.

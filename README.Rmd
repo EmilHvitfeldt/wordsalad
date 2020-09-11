@@ -20,14 +20,14 @@ knitr::opts_chunk$set(
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
-The goal of wordsalad is to provide a unified interface for word embedding methods to produce word vectors.
+The goal of wordsalad is to provide a unified interface for word embedding methods to produce word vectors. wordsalad doesn't provide the implementation of these methods, only a unified interface. For more information on the specific method please refer to the documentation.
 
 Goals of this package are:
 
 - Allow the specification of tokenizer used
 - Streamline argument names and order
 - Consistent output formats
-- Avoid need for creating of temporary files 
+- Avoid the need for creating temporary files 
 
 ## Installation
 

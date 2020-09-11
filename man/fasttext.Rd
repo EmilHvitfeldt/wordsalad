@@ -36,7 +36,7 @@ fasttext(
 \item{window}{Integer, skip length between words. Defaults to 5.}
 
 \item{loss}{Charcter, choice of loss function must be one of "ns", "hs", or
-"softmax". See detaulsfor more Defaults to "hs".}
+"softmax". See details for more Defaults to "hs".}
 
 \item{negative}{integer with the number of negative samples. Only used when
 loss = "ns".}
@@ -63,7 +63,7 @@ A \link[tibble:tibble-package]{tibble}, data.frame or matrix containing
 the token in the first column and word vectors in the remaining columns.
 }
 \description{
-Extract word vectors from fasttext word embedding
+The calculations are done with the fastTextR package.
 }
 \details{
 The choice of loss functions are one of:

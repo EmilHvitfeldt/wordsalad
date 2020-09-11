@@ -1,5 +1,7 @@
 #' Extract word vectors from word2vec word embedding
 #'
+#' The calculations are done with the word2vec package.
+#'
 #' @param text Character string.
 #' @param tokenizer Function, function to perform tokenization. Defaults to
 #'    [text2vec::space_tokenizer].
@@ -17,7 +19,7 @@
 #' @details
 #' A trade-off have been made to allow for an arbitrary tokenizing function. The
 #' text is first passed through the tokenizer. Then it is being collapsed back
-#' together into strings using \code{collapse_character} as the seperater. You
+#' together into strings using \code{collapse_character} as the separator. You
 #' need to pick \code{collapse_character} to be a character that will not appear
 #' in any of the tokens after tokenizing is done. The default value is a "tab"
 #' character. If you pick a character that is present in the tokens then those

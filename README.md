@@ -12,14 +12,16 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 <!-- badges: end -->
 
 The goal of wordsalad is to provide a unified interface for word
-embedding methods to produce word vectors.
+embedding methods to produce word vectors. wordsalad doesn’t provide the
+implementation of these methods, only a unified interface. For more
+information on the specific method please refer to the documentation.
 
 Goals of this package are:
 
   - Allow the specification of tokenizer used
   - Streamline argument names and order
   - Consistent output formats
-  - Avoid need for creating of temporary files
+  - Avoid the need for creating temporary files
 
 ## Installation
 
@@ -38,19 +40,19 @@ library(wordsalad)
 
 glove(fairy_tales)
 #> # A tibble: 451 x 11
-#>    tokens      V1      V2      V3      V4      V5      V6      V7       V8
-#>    <chr>    <dbl>   <dbl>   <dbl>   <dbl>   <dbl>   <dbl>   <dbl>    <dbl>
-#>  1 "\"Do" -0.0285 -0.563   0.638  -0.631  -0.289  -0.229   0.983  -0.00720
-#>  2 "\"Go… -0.369  -0.857   0.0477 -0.263   0.0787  0.271   0.375  -0.499  
-#>  3 "\"He" -0.763  -0.470  -0.698  -0.526   0.518   0.349  -0.0852 -1.01   
-#>  4 "\"He… -0.192  -0.0354 -0.260  -1.17    0.652  -0.0418 -0.0485 -0.766  
-#>  5 "\"Oh" -0.308  -0.879   0.262  -0.796   0.538   0.513   0.393  -0.184  
-#>  6 "\"Th… -0.393  -0.0678 -0.565  -0.369   0.683   0.386   0.0559 -1.39   
-#>  7 "\"Ye… -0.278  -0.423  -0.0846 -0.667   0.872   0.993   0.312  -0.461  
-#>  8 "-"    -1.01   -0.849  -0.234  -0.0341 -0.0836  0.619   0.0295 -0.126  
-#>  9 "All"   0.457   0.0562  0.498  -0.0132 -0.500   0.418   0.418  -0.462  
-#> 10 "You"  -1.24   -0.549  -0.755  -0.938  -0.261   0.853  -0.370  -0.604  
-#> # … with 441 more rows, and 2 more variables: V9 <dbl>, V10 <dbl>
+#>    tokens     V1     V2     V3      V4      V5      V6     V7      V8      V9
+#>    <chr>   <dbl>  <dbl>  <dbl>   <dbl>   <dbl>   <dbl>  <dbl>   <dbl>   <dbl>
+#>  1 "\"Do" -0.315 -0.699 -0.287  0.466   0.321   0.568   0.179 -0.0679 -1.00  
+#>  2 "\"Go… -0.708 -0.983  0.464  0.589  -0.630   0.446  -1.03   0.447  -0.187 
+#>  3 "\"He" -0.199 -0.592  0.259  0.157   0.224   0.456   0.127  0.177  -0.655 
+#>  4 "\"He… -0.179 -0.690 -0.539  0.376  -0.367  -0.0658  0.378  0.302  -0.557 
+#>  5 "\"Oh" -0.812 -0.327  0.640  1.11   -0.251   0.478  -0.229 -0.242  -0.538 
+#>  6 "\"Th… -1.18   0.168 -0.246 -0.189   0.193   0.670   0.171 -0.0168 -0.585 
+#>  7 "\"Ye… -0.245 -0.669  0.281  0.0824  0.343   0.977  -0.364  0.695  -0.768 
+#>  8 "-"    -0.349 -0.412  0.701  0.501  -0.0532  0.704  -0.248  0.361  -0.757 
+#>  9 "All"  -0.218 -0.669 -0.309  0.272  -0.122   0.277  -0.241 -0.0569  0.0158
+#> 10 "You"  -0.843 -0.921  0.219  0.112   0.504   0.551   0.184  0.655  -0.958 
+#> # … with 441 more rows, and 1 more variable: V10 <dbl>
 ```
 
 ## Code of Conduct

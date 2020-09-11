@@ -40,7 +40,7 @@ considered in the model. Defaults to 5.}
 \item{x_max}{Integer, maximum number of co-occurrences to use in the
 weighting function. Defaults to 10.}
 
-\item{stopwords}{Character, a vector of stopwords to exclude from training.}
+\item{stopwords}{Character, a vector of stop words to exclude from training.}
 
 \item{convergence_tol}{Numeric, value determining the convergence criteria.
 \code{numeric = -1} defines early stopping strategy. Stop fitting
@@ -61,7 +61,7 @@ A \link[tibble:tibble-package]{tibble}, data.frame or matrix containing
 the token in the first column and word vectors in the remaining columns.
 }
 \description{
-Extract word vectors from GloVe word embedding
+The calculations are done with the text2vec package.
 }
 \examples{
 glove(fairy_tales, x_max = 5)

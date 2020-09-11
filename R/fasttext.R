@@ -1,5 +1,7 @@
 #' Extract word vectors from fasttext word embedding
 #'
+#' The calculations are done with the fastTextR package.
+#'
 #' @param text Character string.
 #' @param tokenizer Function, function to perform tokenization. Defaults to
 #'    [text2vec::space_tokenizer].
@@ -15,7 +17,7 @@
 #'     all iterations (b) \code{cost_previous_iter / cost_current_iter - 1 <
 #'     convergence_tol}. Defaults to -1.
 #' @param loss Charcter, choice of loss function must be one of "ns", "hs", or
-#'     "softmax". See detaulsfor more Defaults to "hs".
+#'     "softmax". See details for more Defaults to "hs".
 #' @param negative integer with the number of negative samples. Only used when
 #'     loss = "ns".
 #' @param verbose Logical, controls whether progress is reported as operations
