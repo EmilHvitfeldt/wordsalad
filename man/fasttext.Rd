@@ -26,7 +26,7 @@ fasttext(
 \item{text}{Character string.}
 
 \item{tokenizer}{Function, function to perform tokenization. Defaults to
-\link[text2vec:space_tokenizer]{text2vec::space_tokenizer}.}
+\link[text2vec:tokenizers]{text2vec::space_tokenizer}.}
 
 \item{dim}{Integer, number of dimension of the resulting word vectors.}
 

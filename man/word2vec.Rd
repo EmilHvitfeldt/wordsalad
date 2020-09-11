@@ -29,7 +29,7 @@ word2vec(
 \item{text}{Character string.}
 
 \item{tokenizer}{Function, function to perform tokenization. Defaults to
-\link[text2vec:space_tokenizer]{text2vec::space_tokenizer}.}
+\link[text2vec:tokenizers]{text2vec::space_tokenizer}.}
 
 \item{dim}{dimension of the word vectors. Defaults to 50.}
 
