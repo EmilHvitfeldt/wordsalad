@@ -78,35 +78,40 @@
 <ul>
 <li>Allow the specification of tokenizer used</li>
 <li>Streamline argument names and order</li>
-<li>Consistant output formats</li>
+<li>Consistent output formats</li>
+<li>Avoid need for creating of temporary files</li>
 </ul>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>If you want the development version instead then install directly from GitHub:</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="co"># install.packages("devtools")</span>
-<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu">install_github</span>(<span class="st">"EmilHvitfeldt/wordsalad"</span>)</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="co"># install.packages("devtools")</span>
+<span class="kw">devtools</span>::<span class="fu">install_github</span>(<span class="st">"EmilHvitfeldt/wordsalad"</span>)
+</pre></div>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">wordsalad</span>)
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/EmilHvitfeldt/wordsalad">wordsalad</a></span>)
 
-<span class="fu"><a href="reference/glove.html">glove</a></span>(<span class="no">fairy_tales</span>)
+<span class="fu"><a href="reference/glove.html">glove</a></span>(<span class="kw">fairy_tales</span>)
 <span class="co">#&gt; # A tibble: 451 x 11</span>
-<span class="co">#&gt;    tokens       V1      V2     V3     V4      V5    V6     V7     V8     V9</span>
-<span class="co">#&gt;    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 "\"Do" -0.0137   0.974   1.21   0.805  0.254  0.822  0.907  0.243 -0.193</span>
-<span class="co">#&gt;  2 "\"Go…  0.00368  0.482  -0.600 -1.21   0.517  0.347  0.312  0.361 -0.712</span>
-<span class="co">#&gt;  3 "\"He"  0.0800  -0.339  -0.384 -0.870 -0.472  0.355  0.185 -0.224 -1.13 </span>
-<span class="co">#&gt;  4 "\"He… -0.359   -0.400  -0.450 -0.503  0.266  0.464  0.179  0.145 -0.575</span>
-<span class="co">#&gt;  5 "\"Oh"  0.778    0.0130  0.407 -0.516  0.0855 0.361 -0.293 -0.549 -0.617</span>
-<span class="co">#&gt;  6 "\"Th… -0.0854   0.451  -0.461 -0.538  0.229  0.592  0.543 -0.145 -0.868</span>
-<span class="co">#&gt;  7 "\"Ye… -0.570    0.883  -0.115 -0.288 -0.705  0.431  0.468 -0.277 -0.696</span>
-<span class="co">#&gt;  8 "-"    -0.607    0.440   0.100 -0.630 -0.0968 0.787  1.07  -0.500 -0.927</span>
-<span class="co">#&gt;  9 "All"   0.373   -0.297   0.183 -0.447  0.183  1.07   0.843  0.257  0.512</span>
-<span class="co">#&gt; 10 "You"  -0.723    0.241  -0.127 -0.616  0.391  0.430  0.268 -0.602 -0.753</span>
-<span class="co">#&gt; # … with 441 more rows, and 1 more variable: V10 &lt;dbl&gt;</span></pre></div>
+<span class="co">#&gt;    tokens      V1      V2      V3      V4      V5      V6      V7       V8</span>
+<span class="co">#&gt;    &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 "\"Do" -0.0285 -0.563   0.638  -0.631  -0.289  -0.229   0.983  -0.00720</span>
+<span class="co">#&gt;  2 "\"Go… -0.369  -0.857   0.0477 -0.263   0.0787  0.271   0.375  -0.499  </span>
+<span class="co">#&gt;  3 "\"He" -0.763  -0.470  -0.698  -0.526   0.518   0.349  -0.0852 -1.01   </span>
+<span class="co">#&gt;  4 "\"He… -0.192  -0.0354 -0.260  -1.17    0.652  -0.0418 -0.0485 -0.766  </span>
+<span class="co">#&gt;  5 "\"Oh" -0.308  -0.879   0.262  -0.796   0.538   0.513   0.393  -0.184  </span>
+<span class="co">#&gt;  6 "\"Th… -0.393  -0.0678 -0.565  -0.369   0.683   0.386   0.0559 -1.39   </span>
+<span class="co">#&gt;  7 "\"Ye… -0.278  -0.423  -0.0846 -0.667   0.872   0.993   0.312  -0.461  </span>
+<span class="co">#&gt;  8 "-"    -1.01   -0.849  -0.234  -0.0341 -0.0836  0.619   0.0295 -0.126  </span>
+<span class="co">#&gt;  9 "All"   0.457   0.0562  0.498  -0.0132 -0.500   0.418   0.418  -0.462  </span>
+<span class="co">#&gt; 10 "You"  -1.24   -0.549  -0.755  -0.938  -0.261   0.853  -0.370  -0.604  </span>
+<span class="co">#&gt; # … with 441 more rows, and 2 more variables: V9 &lt;dbl&gt;, V10 &lt;dbl&gt;</span>
+</pre></div>
 </div>
 <div id="code-of-conduct" class="section level2">
 <h2 class="hasAnchor">
@@ -162,7 +167,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.9000.</p>
 </div>
 
       </footer>
