@@ -41,7 +41,7 @@ fasttext(
 \item{negative}{integer with the number of negative samples. Only used when
 loss = "ns".}
 
-\item{n_iter}{Integer, number of training iterations. Defaults to 10.
+\item{n_iter}{Integer, number of training iterations. Defaults to 5.
 \code{numeric = -1} defines early stopping strategy. Stop fitting
 when one of two following conditions will be satisfied: (a) passed
 all iterations (b) \code{cost_previous_iter / cost_current_iter - 1 <
@@ -74,10 +74,12 @@ The choice of loss functions are one of:
 }
 }
 \examples{
-fasttext(fairy_tales)
+fasttext(fairy_tales, n_iter = 2)
 
 # Custom tokenizer that splits on non-alphanumeric characters
-fasttext(fairy_tales, tokenizer = function(x) strsplit(x, "[^[:alnum:]]+"))
+fasttext(fairy_tales,
+         n_iter = 2,
+         tokenizer = function(x) strsplit(x, "[^[:alnum:]]+"))
 }
 \references{
 Enriching Word Vectors with Subword Information, 2016, P.

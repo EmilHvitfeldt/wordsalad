@@ -9,7 +9,7 @@
 #' @param type Character, the type of algorithm to use, either 'cbow' or
 #'     'skip-gram'. Defaults to 'skip-gram'.
 #' @param window Integer, skip length between words. Defaults to 5.
-#' @param n_iter Integer, number of training iterations. Defaults to 10.
+#' @param n_iter Integer, number of training iterations. Defaults to 5.
 #'     \code{numeric = -1} defines early stopping strategy. Stop fitting
 #'     when one of two following conditions will be satisfied: (a) passed
 #'     all iterations (b) \code{cost_previous_iter / cost_current_iter - 1 <
@@ -39,10 +39,12 @@
 #'
 #' @export
 #' @examples
-#' fasttext(fairy_tales)
+#' fasttext(fairy_tales, n_iter = 2)
 #'
 #' # Custom tokenizer that splits on non-alphanumeric characters
-#' fasttext(fairy_tales, tokenizer = function(x) strsplit(x, "[^[:alnum:]]+"))
+#' fasttext(fairy_tales,
+#'          n_iter = 2,
+#'          tokenizer = function(x) strsplit(x, "[^[:alnum:]]+"))
 fasttext <- function(text,
                      tokenizer = text2vec::space_tokenizer,
                      dim = 10L,
@@ -63,21 +65,21 @@ fasttext <- function(text,
   tmp_file_txt <- tempfile()
   tmp_file_model <- tempfile()
   writeLines(text = text, con = tmp_file_txt)
-  fastrtext::execute(commands = c(type,
-                                  "-input", tmp_file_txt,
-                                  "-output", tmp_file_model,
-                                  "-verbose", ifelse(verbose, 2, 0),
-                                  "-dim", dim,
-                                  "-minCount", min_count,
-                                  "-ws", window,
-                                  "-epoch", n_iter,
-                                  "-thread", threads,
-                                  "-neg", negative,
-                                  "-loss", loss))
 
-  model <- fastrtext::load_model(paste0(tmp_file_model, ".bin"))
+  control <- fastTextR::ft_control(
+    loss = loss,
+    word_vec_size = dim,
+    window_size = window,
+    epoch = n_iter,
+    neg = negative,
+    min_count = min_count,
+    nthreads = threads,
+    verbose = verbose
+  )
 
-  word_vectors <- fastrtext::get_word_vectors(model)
+  model <- fastTextR::ft_train(tmp_file_txt, method = type, control = control)
+
+  word_vectors <- model$word_vectors(model$words())
   res <- composer(word_vectors, composition = composition)
 
   res

@@ -21,10 +21,8 @@ Imports:
     tibble,
     text2vec,
     word2vec,
-    fastrtext
+    fastTextR
 Suggests: 
     testthat
-Remotes:
-    pommedeterresautee/fastrtext
 URL: https://github.com/EmilHvitfeldt/wordsalad
 BugReports: https://github.com/EmilHvitfeldt/wordsalad/issues

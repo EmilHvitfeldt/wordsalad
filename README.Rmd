@@ -26,7 +26,8 @@ Goals of this package are:
 
 - Allow the specification of tokenizer used
 - Streamline argument names and order
-- Consistant output formats
+- Consistent output formats
+- Avoid need for creating of temporary files 
 
 ## Installation
 
