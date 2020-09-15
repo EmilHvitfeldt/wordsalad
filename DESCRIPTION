@@ -1,6 +1,6 @@
 Package: wordsalad
 Title: Provide Tools to Extract and Analyze Word Vectors
-Version: 0.0.0.9000
+Version: 0.2.0
 Authors@R: 
     person(given = "Emil",
            family = "Hvitfeldt",
@@ -9,7 +9,7 @@ Authors@R:
            comment = c(ORCID = "0000-0002-0679-1945"))
 Description: Provides access to various word embedding methods (GloVe, 
     fasttext and word2vec) to extract word vectors using a unified framework to
-    increase repoducibility and correctness.
+    increase reproducibility and correctness.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
