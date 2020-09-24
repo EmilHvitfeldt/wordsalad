@@ -31,6 +31,12 @@ Goals of this package are:
 
 ## Installation
 
+You can install the released version of wordsalad from [CRAN](https://CRAN.R-project.org) with:
+
+```{r, eval=FALSE}
+install.packages("wordsalad")
+```
+
 If you want the development version instead then install directly from GitHub:
 
 ```{r, eval=FALSE}
